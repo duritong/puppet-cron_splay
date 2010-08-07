@@ -1,7 +1,7 @@
 class cron-splay::base {
    require cron
    file{"/usr/local/sbin/cron-splay.sh":
-        source => "puppet://$server/modules/cron-splay/cron-splay.sh",
+        source => "puppet:///modules/cron-splay/cron-splay.sh",
         notify => Exec[splay_cron],
         mode => 0700, owner => root, group => 0;
     }
