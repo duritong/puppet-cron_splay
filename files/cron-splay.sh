@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/bin/bash
 
 minutes="`echo $[ 0x\`hostid\` ] | sed s/-//`"
 let "minutes %= 360"
