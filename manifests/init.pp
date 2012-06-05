@@ -1,5 +1,5 @@
 #
-# cron-splay module
+# cron_splay module
 #
 # Copyright 2008, admin(at)immerda.ch
 # Copyright 2008, Puzzle ITC GmbH
@@ -19,9 +19,9 @@
 # centos systems.
 #
 
-class cron-splay {
-  case $operatingsystem {
-    centos: { include cron-splay::base }
-    default: { info("No cron splaying supported so far on ${operatingsystem}") }
+class cron_splay {
+  case $::operatingsystem {
+    centos: { include cron_splay::base }
+    default: { info("No cron splaying supported so far on ${::operatingsystem}") }
   }
 }
