@@ -6,9 +6,9 @@
 # Marcel Härry haerry+puppet(at)puzzle.ch
 # Simon Josi josi+puppet(at)puzzle.ch
 #
-# This program is free software; you can redistribute 
-# it and/or modify it under the terms of the GNU 
-# General Public License version 3 as published by 
+# This program is free software; you can redistribute
+# it and/or modify it under the terms of the GNU
+# General Public License version 3 as published by
 # the Free Software Foundation.
 #
 # This module is used to manage a kind
@@ -19,9 +19,17 @@
 # centos systems.
 #
 
+# Splay cronjobs in your env
 class cron_splay {
   case $::operatingsystem {
-    centos: { include cron_splay::base }
-    default: { info("No cron splaying supported so far on ${::operatingsystem}") }
+    centos: {
+      if $::operatingsystemmajrelease > 5 {
+        include cron_splay::centos_6
+      } else {
+        include cron_splay::base
+      }
+    }
+    debian: { include cron_splay::base }
+    default: { info("Cron splaying supported so far on ${::operatingsystem}") }
   }
 }
