@@ -1,7 +1,7 @@
 # randomly splay the hourly cron
 # more is not necessary as everything else
 # is already splayed by anacron itself.
-class cron_splay::base {
+class cron_splay::centos_6 {
   $minutes = fqdn_rand(59)
   exec{
     'splay_hourly_cron':
