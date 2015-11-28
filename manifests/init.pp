@@ -22,14 +22,14 @@
 # Splay cronjobs in your env
 class cron_splay {
   case $::operatingsystem {
-    centos: {
-      if $::operatingsystemmajrelease > 5 {
-        include cron_splay::centos_6
+    'CentOS': {
+      if versioncmp($::operatingsystemmajrelease,'5') > 0 {
+        include ::cron_splay::centos_6
       } else {
-        include cron_splay::base
+        include ::cron_splay::base
       }
     }
-    debian: { include cron_splay::base }
+    'Debian': { include ::cron_splay::base }
     default: { info("Cron splaying supported so far on ${::operatingsystem}") }
   }
 }

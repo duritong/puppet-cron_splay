@@ -1,10 +1,12 @@
 # splay cron
 class cron_splay::base {
-  require cron
-  file{"/usr/local/sbin/cron-splay.sh":
-    source => "puppet:///modules/cron_splay/cron-splay.sh",
+  require ::cron
+  file{'/usr/local/sbin/cron-splay.sh':
+    source => 'puppet:///modules/cron_splay/cron-splay.sh',
     notify => Exec[splay_cron],
-    mode => 0700, owner => root, group => 0;
+    owner  => root,
+    group  => 0,
+    mode   => '0700';
   }
 
   $minutes = fqdn_rand(59)
@@ -14,8 +16,8 @@ class cron_splay::base {
       unless  => "grep -Eq '^${minutes} .*cron\\.hourly' /etc/crontab",
   }
 
-  exec{splay_cron:
-    command => "/usr/local/sbin/cron-splay.sh",
+  exec{'splay_cron':
+    command     => '/usr/local/sbin/cron-splay.sh',
     refreshonly => true,
   }
 }
