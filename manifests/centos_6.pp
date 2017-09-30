@@ -5,7 +5,7 @@ class cron_splay::centos_6 {
   $minutes = fqdn_rand(59)
   exec{
     'splay_hourly_cron':
-      command => "sed -i 's/^[0-9]\{1,2\} /${minutes} /' /etc/cron.d/0hourly",
+      command => "sed -i 's/^[0-9]\\{1,2\\} /${minutes} /' /etc/cron.d/0hourly",
       unless  => "grep -Eq '^${minutes} ' /etc/cron.d/0hourly",
   }
 }
